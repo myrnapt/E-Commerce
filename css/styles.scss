@@ -6,20 +6,17 @@
 .navbar {
   background-color: rgb(255, 245, 233) !important;
 }
-
 .card {
   border-style: double !important;
   border-width: 15px;
   border-radius: 0px;
   border-color: rgb(238, 220, 199);
 }
-
 p {
   font-size: x-large;
   margin-top: 10%;
   margin-bottom: 0%;
 }
-
 h5 {
   font-size: x-large;
   margin-top: 10%;
@@ -31,25 +28,21 @@ h5 {
   border-radius: 0;
   border-color: rgb(97, 97, 97);
 }
-
 .btn:hover {
   background-color: rgb(154, 135, 124);
   color: white;
   border-color: white;
 }
-
 .card:hover {
   transform: scale(1.1);
 }
-
 .footer {
   background-color: rgb(255, 245, 233);
 }
-
 .nav-link {
-  color: black !important;
+    color: black !important;
+}
+.nav-link:hover {
+    color: rgb(174, 133, 110) !important;
 }
 
-.nav-link:hover {
-  color: rgb(174, 133, 110) !important;
-}/*# sourceMappingURL=styles.css.map */
