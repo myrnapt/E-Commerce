@@ -1,7 +1,7 @@
 var products = [
-  { 
+  {
     id: 1,
-    name: "cooking oil",
+    name: "Triple stone",
     price: 10.5,
     type: "grocery",
     offer: {
@@ -11,14 +11,14 @@ var products = [
   },
   {
     id: 2,
-    name: "Pasta",
-    price: 6.25,
+    name: "Resin Flower",
+    price: 12,
     type: "grocery",
   },
   {
     id: 3,
-    name: "Instant cupcake mixture",
-    price: 5,
+    name: "Malaquite",
+    price: 15,
     type: "grocery",
     offer: {
       number: 10,
@@ -27,38 +27,38 @@ var products = [
   },
   {
     id: 4,
-    name: "All-in-one",
-    price: 260,
+    name: "Margarite Flower",
+    price: 20,
     type: "beauty",
   },
   {
     id: 5,
-    name: "Zero Make-up Kit",
-    price: 20.5,
+    name: "Double Pearls",
+    price: 25,
     type: "beauty",
   },
   {
     id: 6,
-    name: "Lip Tints",
-    price: 12.75,
+    name: "Resin Diamons",
+    price: 30,
     type: "beauty",
   },
   {
     id: 7,
-    name: "Lawn Dress",
-    price: 15,
+    name: "Resin Pair",
+    price: 10,
     type: "clothes",
   },
   {
     id: 8,
-    name: "Lawn-Chiffon Combo",
-    price: 19.99,
+    name: "Black Enamel",
+    price: 12,
     type: "clothes",
   },
   {
     id: 9,
-    name: "Toddler Frock",
-    price: 9.99,
+    name: "Bee",
+    price: 30,
     type: "clothes",
   },
 ];
@@ -71,7 +71,7 @@ function open_modal() {
   console.log("Open Modal");
   printCart();
 }
- 
+
 // Exercise 1
 /* function buy(id) {
   for (i = 0; i < products.length; i++) {
@@ -88,7 +88,7 @@ function cleanCart() {
   // FUNCIONA
   cartList = [];
   cart = [];
-  document.getElementById("count_product").innerHTML = 0;
+  document.getElementById("count_product").innerHTML = cart.length;
   document.getElementById("total_price").innerHTML = 0;
   document.getElementById("cart_list").innerHTML = "";
 }
@@ -123,6 +123,7 @@ function calculateTotal() {
 // Exercise 5
 function applyPromotionsCart() {
   // FUNCIONA
+
   for (i = 0; i < cart.length; i++) {
     let existDiscount = cart[i].offer;
     if (existDiscount && cart[i].id === 1 && cart[i].quantity >= 3) {
@@ -133,7 +134,7 @@ function applyPromotionsCart() {
     }
   }
 }
- 
+
 // Exercise 6
 function printCart() {
   //generateCart()
@@ -175,21 +176,25 @@ function printCart() {
 // ** Nivell II **
 // Exercise 8
 function addToCart(id) {
-  for (i = 0; i < products.length; i++) {
-    if (products[i].id === id && products[i].hasOwnProperty('quantity') === false) {
-      cart.push(products[i])
-      products[i].quantity = 1
-    } else if (products[i].id === id && products[i].hasOwnProperty('quantity') === true) { products[i].quantity++ }
+  const existingProduct = cart.find(item => item.id === id);
+
+  if (existingProduct) {
+    existingProduct.quantity++;
+  } else {
+    const product = products.find(item => item.id === id);
+    product.quantity = 1;
+    cart.push(product);
   }
-    document.getElementById("count_product").innerHTML = cart.length;
-    applyPromotionsCart();
-    console.log(cart);
+
+  document.getElementById("count_product").innerHTML = cart.length;
+  console.log(cart);
 }
+
 
 // Exercise 9
 function removeFromCart(id) {
   const index = cart.findIndex(item => item.id === id);
-  
+
   if (index !== -1) {
     if (cart[index].quantity === 1) {
       cart.splice(index, 1);
@@ -197,7 +202,7 @@ function removeFromCart(id) {
       cart[index].quantity--;
     }
   }
-  
+
   applyPromotionsCart();
   printCart();
 }
