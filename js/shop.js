@@ -18,7 +18,7 @@ var products = [
   {
     id: 3,
     name: "Malaquite",
-    price: 15,
+    price: 5,
     type: "grocery",
     offer: {
       number: 10,
@@ -132,8 +132,15 @@ function applyPromotionsCart() {
     if (existDiscount && cart[i].id === 3 && cart[i].quantity >= 10) {
       cart[i].subtotalWithDiscount = (cart[i].quantity * 3.33)
     }
+    if (cart[i].id === 1 && cart[i].quantity < 3) {
+      delete cart[i].subtotalWithDiscount
+    }
+    if (cart[i].id === 3 && cart[i].quantity < 10) {
+      delete cart[i].subtotalWithDiscount
+    }
   }
 }
+
 
 // Exercise 6
 function printCart() {
@@ -185,8 +192,10 @@ function addToCart(id) {
     product.quantity = 1;
     cart.push(product);
   }
-
+  applyPromotionsCart()
   document.getElementById("count_product").innerHTML = cart.length;
+  printCart();
+
   console.log(cart);
 }
 
@@ -194,7 +203,7 @@ function addToCart(id) {
 // Exercise 9
 function removeFromCart(id) {
   const index = cart.findIndex(item => item.id === id);
-
+  
   if (index !== -1) {
     if (cart[index].quantity === 1) {
       cart.splice(index, 1);
@@ -203,6 +212,7 @@ function removeFromCart(id) {
     }
   }
 
-  applyPromotionsCart();
+  applyPromotionsCart()
   printCart();
+  console.log(cart)
 }
